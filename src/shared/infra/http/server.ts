@@ -4,8 +4,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 
-// import '@modules/'
-
 import routes from './routes/index';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
