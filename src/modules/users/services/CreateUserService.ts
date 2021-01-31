@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { hash } from 'bcryptjs';
 
 import AppError from '@shared/errors/AppError';
