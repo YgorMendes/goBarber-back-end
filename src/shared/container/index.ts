@@ -1,4 +1,6 @@
-import { container, delay } from 'tsyringe'
+import { container, delay } from 'tsyringe';
+
+import {  } from '@modules/users/providers';
 
 import IAppointmentsReposiory from '@modules/appointments/repositories/IAppointmentsRepository'
 import AppointmentsReposiory from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
