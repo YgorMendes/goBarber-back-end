@@ -1,6 +1,7 @@
 import { container, delay } from 'tsyringe';
 
-import {  } from '@modules/users/providers';
+import '@modules/users/providers';
+import './providers';
 
 import IAppointmentsReposiory from '@modules/appointments/repositories/IAppointmentsRepository'
 import AppointmentsReposiory from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
@@ -10,7 +11,7 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 
 container.registerSingleton<IAppointmentsReposiory>(
   'AppointmentsReposiory',
-  delay(() => AppointmentsReposiory),
+  delay(() => AppointmentsReposiory), 
   
 );
 
