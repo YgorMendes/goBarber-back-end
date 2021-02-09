@@ -5,7 +5,7 @@ import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import AppError from "@shared/errors/AppError";
-import IUserTokennsRepository from "../repositories/IUserTokenRepository";
+import IUserTokennsRepository from "../repositories/IUserTokensRepository";
 
 interface IRequest {
   email: string;
@@ -20,7 +20,7 @@ class SendForgotPasswordEmailService {
     @inject('MailProvider')
     private mailProvider: IMailProvider,
 
-    @inject('UserTokenRepository')
+    @inject('UserTokensRepository')
     private userTokenRepository: IUserTokennsRepository,
   ) {}
 
@@ -33,7 +33,7 @@ class SendForgotPasswordEmailService {
 
     await this.userTokenRepository.generate(user.id);
 
-    this.mailProvider.sendMail( 
+    await this.mailProvider.sendMail( 
       email, 
       'Pedido de recuperação de senha recebido.'
     );
