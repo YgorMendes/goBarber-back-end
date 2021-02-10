@@ -21,13 +21,10 @@ describe('SendForgotPasswordEmail', () => {
       fakeMailProvider,
       fakeUserTokensRepository,
     );
-
   })
 
   it('Should be able to recover the password using the email', async () => {
-
     const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
-
 
     await fakeUsersRepository .create({
       name: 'Larry',
@@ -51,7 +48,6 @@ describe('SendForgotPasswordEmail', () => {
   });
 
   it('shold generate a forgot password token', async () => {
-    const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
     const generateToken = jest.spyOn(fakeUserTokensRepository, 'generate');
 
     const user = await fakeUsersRepository .create({
