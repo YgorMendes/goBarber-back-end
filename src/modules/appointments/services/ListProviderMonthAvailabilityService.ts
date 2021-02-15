@@ -13,7 +13,7 @@ interface IRequest {
 
 type IResponse = Array<{
   day: number;
-  avaliable: boolean;
+  available: boolean;
 }>
 
 @injectable()
@@ -39,12 +39,12 @@ class ListProviderMonthAvailabilityService {
 
     const availability = eachDayArray.map(day => {
       const appointmentsInDay = appointments.filter(appointment => {
-        return getDate(appointment.date) === day
+        return getDate(appointment.date) === day;
       });
 
       return {
         day,
-        avaliable: appointmentsInDay.length < 10,
+        available: appointmentsInDay.length < 10,
       };
     });
 
