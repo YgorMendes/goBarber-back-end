@@ -6,3 +6,6 @@ tmp/*
 coverage
 ormconfig.json
 !tmp/.gitKeep
+package.json
+.gitignore
+yarn.lock
