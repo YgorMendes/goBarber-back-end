@@ -6,13 +6,24 @@ import UsersControllers from '../controllers/UsersControllers'
 import UserAvatarController from '../controllers/UserAvatarController'
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const usersRouter = Router();
 const usersControllers = new UsersControllers();
 const userAvatarController = new UserAvatarController();
 const upload = multer(uploadConfig);
 
-usersRouter.post('/', usersControllers.create);
+usersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  usersControllers.create
+);
 
 usersRouter.patch(
   '/avatar', 
