@@ -1,3 +1,4 @@
+import ICacheProvider from "@shared/container/providers/CacheProvider/models/ICacheProvider";
 import { getDate, getDaysInMonth } from "date-fns";
 import "reflect-metadata";
 
@@ -17,10 +18,17 @@ interface IRequest {
 class ListProviderAppointmentsService {
   constructor(
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentRepository
+    private appointmentsRepository: IAppointmentRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ provider_id, day, month, year }: IRequest): Promise<Appointment[]> {
+    const cacheData =  await this.cacheProvider.recover('asd');
+
+    console.log(cacheData)
+
     const appointments = await this.appointmentsRepository.findAllDayFromProvider(
       {
         provider_id,
@@ -29,6 +37,8 @@ class ListProviderAppointmentsService {
         year,
       }
     );
+
+    // await this.cacheProvider.save('asd', 'asd');
 
     return appointments
   }
