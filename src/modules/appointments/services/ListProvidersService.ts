@@ -30,7 +30,7 @@ class ListProvidersService {
       
       console.log('feito');
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users)
+      await this.cacheProvider.save(`providers-list:${user_id}`, users);
     }
 
     return users;
