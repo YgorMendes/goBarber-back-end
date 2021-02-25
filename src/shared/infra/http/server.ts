@@ -12,9 +12,11 @@ import AppError from '@shared/errors/AppError';
 import '@shared/infra/typeorm';
 import '@shared/container';
 import { errors } from 'celebrate';
+import rateLimiter from './middlewares/RateLimiter';
 
 const app = express();
 
+app.use(rateLimiter);
 app.use(cors());
 app.use('/files', express.static(uploadConfig.uploadFolder));
 app.use(routes);

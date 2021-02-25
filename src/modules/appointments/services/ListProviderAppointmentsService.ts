@@ -45,8 +45,6 @@ class ListProviderAppointmentsService {
         cachekay,
         appointments
       );
-
-      console.log('buscou no banco')
     }
 
     return appointments;
