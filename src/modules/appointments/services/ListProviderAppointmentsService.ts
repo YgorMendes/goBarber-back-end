@@ -1,4 +1,5 @@
 import ICacheProvider from "@shared/container/providers/CacheProvider/models/ICacheProvider";
+import { classToClass } from "class-transformer";
 import { getDate, getDaysInMonth } from "date-fns";
 import "reflect-metadata";
 
@@ -43,7 +44,7 @@ class ListProviderAppointmentsService {
 
       await this.cacheProvider.save(
         cachekay,
-        appointments
+        classToClass(appointments),
       );
     }
 
