@@ -19,7 +19,7 @@ class UpdateUserAvatarService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('UsersRepository')
+    @inject('StorageProvider')
     private storageProvider: IStorageProvider,
   ) {}
 
@@ -35,9 +35,9 @@ class UpdateUserAvatarService {
       await this.storageProvider.deleteFile(user.avatar);
     }
 
-    const Filename = await this.storageProvider.saveFile(avatarFilename);
+    const filename = await this.storageProvider.saveFile(avatarFilename);
       
-    user.avatar = Filename; 
+    user.avatar = filename;
     await this.usersRepository.save(user);
 
     return user;
